@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo2 from "../assets/logo2.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,8 +6,31 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    // Function to handle scroll event
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        // If scrolled down more than 50 pixels, add the 'scrolled' class
+        setScrolled(true);
+      } else {
+        // Otherwise, remove the 'scrolled' class
+        setScrolled(false);
+      }
+    };
+
+    // Add the scroll event listener when the component mounts
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav>
+    <nav className={` ${scrolled ? "scrolled-nav" : ""}`}>
       <div className="left-nav">
         <Link to={"/"}>
           <img src={logo2} alt="Navigation Logo" />

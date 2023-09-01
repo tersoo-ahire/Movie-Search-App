@@ -32,6 +32,7 @@ nav {
   right: 0;
   z-index: 100;
   padding: 0em 3em;
+  transition: 0.3s;
 }
 nav .left-nav {
   display: flex;
@@ -78,18 +79,38 @@ nav .right-nav a .github:hover {
   text-shadow: 0 0 8px gold;
 }
 
+.scrolled-nav {
+  background-color: #46484d;
+}
+
+.button {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: gold;
+  background-color: inherit;
+  padding: 0.75em 1.5em;
+  border: 1px solid gold;
+  border-radius: 1em;
+  transition: all 0.3s ease-in-out;
+}
+.button:hover {
+  box-shadow: 0 0 8px 1px gold;
+  text-shadow: 0 0 3px gold;
+}
+
 .homepage {
   display: flex;
   flex-direction: column;
-  margin-top: 5em;
+  margin: 5em 0em;
 }
 .homepage .hero-container {
   display: flex;
   background-color: #25262A;
   height: 450px;
   padding: 0em 3em;
-  border-bottom-left-radius: 50% 10%;
-  border-bottom-right-radius: 50% 10%;
+  border-bottom-left-radius: 50% 12%;
+  border-bottom-right-radius: 50% 12%;
 }
 .homepage .hero-container .hero-container-left {
   display: flex;
@@ -101,20 +122,8 @@ nav .right-nav a .github:hover {
 }
 .homepage .hero-container .hero-container-left h1 {
   font-size: 3.5rem;
+  font-weight: 900;
   margin: 0;
-}
-.homepage .hero-container .hero-container-left button {
-  font-size: 1rem;
-  color: gold;
-  background-color: inherit;
-  padding: 0.75em 1.5em;
-  border: 1px solid gold;
-  border-radius: 1em;
-  transition: all 0.3s ease-in-out;
-}
-.homepage .hero-container .hero-container-left button:hover {
-  box-shadow: 0 0 8px 1px gold;
-  text-shadow: 0 0 8px gold;
 }
 .homepage .hero-container .hero-container-right {
   display: flex;
@@ -123,4 +132,51 @@ nav .right-nav a .github:hover {
 }
 .homepage .hero-container .hero-container-right img {
   width: 100%;
+}
+.homepage .search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5em;
+  margin: 5em 6em 0em 6em;
+  padding: 4em 5em;
+  background-color: #25262A;
+  border-radius: 1.5em;
+  transition: 0.2s;
+}
+.homepage .search-container h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin: 0;
+}
+.homepage .search-container .input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  width: 80%;
+  border-radius: 2em;
+}
+.homepage .search-container .input-container .search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(70, 72, 77, 0.8117647059);
+  width: 10%;
+  padding: 1.15em 0em;
+  border-top-left-radius: 1.8rem;
+  border-bottom-left-radius: 1.8rem;
+  z-index: 3;
+}
+.homepage .search-container .input-container input {
+  width: 90%;
+  outline: none;
+  border: none;
+  border-radius: inherit;
+  padding: 1.15em;
+  font-size: 1.15rem;
+  color: #25262A;
+}
+.homepage .search-container:focus-within {
+  box-shadow: 0 0 8px 1px gold;
 }/*# sourceMappingURL=App.css.map */

@@ -1,4 +1,5 @@
 import React from "react";
+import Search from "../components/Search";
 import illustration1 from "../assets/illustration1.svg";
 
 export default function Home() {
@@ -11,7 +12,9 @@ export default function Home() {
             <span style={{ color: "gold", fontStyle: "italic" }}>Movies.</span>{" "}
             Explore, Discover & Enjoy!
           </h1>
-          <button>Find Movies</button>
+          <a href="#search" className="button">
+            Find Movies
+          </a>
         </div>
         <div className="hero-container-right">
           <img
@@ -20,6 +23,8 @@ export default function Home() {
           />
         </div>
       </header>
+
+      <Search />
     </main>
   );
 }
