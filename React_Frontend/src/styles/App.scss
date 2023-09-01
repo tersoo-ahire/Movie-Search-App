@@ -38,10 +38,11 @@ nav {
 
   .left-nav {
     display: flex;
+    align-items: center;
     width: 30%;
 
     img {
-      width: 70%;
+      width: 50%;
     }
   }
 
@@ -73,6 +74,60 @@ nav {
         .icon {
           color: $gold; // Change the icon color when the link is hovered
         }
+      }
+    }
+  }
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5em;
+
+  .hero-container {
+    display: flex;
+    background-color: $darkgrey;
+    height: 450px;
+    padding: $desktoppadding;
+    border-bottom-left-radius: 50% 10%;
+    border-bottom-right-radius: 50% 10%;
+
+    .hero-container-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 3em;
+      width: 60%;
+
+      h1 {
+        font-size: 3.5rem;
+        margin: 0;
+      }
+
+      button {
+        font-size: 1rem;
+        color: $gold;
+        background-color: inherit;
+        padding: 0.75em 1.5em;
+        border: 1px solid $gold;
+        border-radius: 1em;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 0 8px 1px $gold;
+          text-shadow: 0 0 8px $gold;
+        }
+      }
+    }
+
+    .hero-container-right {
+      display: flex;
+      align-items: center;
+      width: 40%;
+
+      img {
+        width: 100%;
       }
     }
   }
