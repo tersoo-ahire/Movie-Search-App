@@ -75,6 +75,17 @@ nav {
           color: $gold; // Change the icon color when the link is hovered
         }
       }
+
+      .github {
+        border-radius: 1em;
+        background-color: none;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 0 8px 1px $gold;
+          text-shadow: 0 0 8px $gold;
+        }
+      }
     }
   }
 }

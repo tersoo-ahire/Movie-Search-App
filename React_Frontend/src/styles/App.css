@@ -68,6 +68,15 @@ nav .right-nav a:hover {
 nav .right-nav a:hover .icon {
   color: gold;
 }
+nav .right-nav a .github {
+  border-radius: 1em;
+  background-color: none;
+  transition: all 0.3s ease-in-out;
+}
+nav .right-nav a .github:hover {
+  box-shadow: 0 0 8px 1px gold;
+  text-shadow: 0 0 8px gold;
+}
 
 .homepage {
   display: flex;
