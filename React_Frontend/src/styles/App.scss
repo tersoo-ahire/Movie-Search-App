@@ -91,6 +91,39 @@ nav {
   }
 }
 
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $darkgrey;
+  padding: $desktoppadding;
+  height: 80px;
+
+  .left-footer {
+    display: flex;
+    align-items: center;
+    width: 30%;
+
+    img {
+      width: 50%;
+    }
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+  }
+
+  .right-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30%;
+  }
+}
+
 .scrolled-nav {
   background-color: #46484d;
 }

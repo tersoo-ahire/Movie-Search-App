@@ -38,9 +38,9 @@ export default function Navigation() {
       </div>
       <div className="right-nav">
         <Link to={"/"}>Home</Link>
-        <Link to={"/about"}>About</Link>
-        <Link to={"/company"}>Company</Link>
-        <Link to={"/docs"}>
+        <Link to={"#"}>About</Link>
+        <Link to={"#"}>Company</Link>
+        <Link to={"#"}>
           <FontAwesomeIcon
             icon={faArrowUpRightFromSquare}
             size="2xs"

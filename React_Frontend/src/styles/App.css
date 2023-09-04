@@ -79,6 +79,35 @@ nav .right-nav a .github:hover {
   text-shadow: 0 0 8px gold;
 }
 
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #25262A;
+  padding: 0em 3em;
+  height: 80px;
+}
+footer .left-footer {
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+footer .left-footer img {
+  width: 50%;
+}
+footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+footer .right-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30%;
+}
+
 .scrolled-nav {
   background-color: #46484d;
 }
