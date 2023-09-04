@@ -4,7 +4,7 @@ import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import { useMovieData } from "../Context";
 
-export default function Search() {
+export default function Search({ onSearchSuccess }) {
   const [formData, setFormData] = useState({
     title: "",
     response: "json",
@@ -47,9 +47,17 @@ export default function Search() {
       );
       if (response.data.Response === "True") {
         setMovieData(response.data); // Set the movie data to be displayed.
+        let countdown = 1; // Set 1 second countdown on error message
+        const countdownInterval = setInterval(() => {
+          countdown--;
+          if (countdown === 0) {
+            clearInterval(countdownInterval);
+            onSearchSuccess(); // Call the onSearchSuccess callback;
+          }
+        }, 1000);
       } else {
         setMovieData(false); // Reset the movie data state
-        let countdown = 5; // Set 3 second countdown on error message
+        let countdown = 5; // Set 5 second countdown on error message
         const countdownInterval = setInterval(() => {
           countdown--;
           setErrorMessage("No movies were found");
@@ -62,9 +70,7 @@ export default function Search() {
         }, 1000);
       }
     } catch (error) {
-      console.error("Error Status:", error.status);
-      console.error("Error Response", error.response);
-      console.error("Error Data:", error.data);
+      console.error("Error:", error); // Log the error object
       // Reset the movie data state
       setMovieData(false);
     }

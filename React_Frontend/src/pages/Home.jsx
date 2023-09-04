@@ -4,6 +4,14 @@ import MovieInfo from "../components/MovieInfo";
 import illustration1 from "../assets/illustration1.svg";
 
 export default function Home() {
+  // Callback to scroll to the end of the home page when the search is successful
+  const scrollToMovieInfo = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <main className="homepage">
       <header className="hero-container">
@@ -25,7 +33,7 @@ export default function Home() {
         </div>
       </header>
 
-      <Search />
+      <Search onSearchSuccess={scrollToMovieInfo} />
       <MovieInfo />
     </main>
   );

@@ -259,8 +259,13 @@ nav {
         justify-content: space-between;
         gap: 1em;
         margin: 0;
-        padding: 1em 0em;
+        padding: 1em 1.5em;
         border-bottom: 1px solid rgba(255, 255, 255, 0.639);
+
+        &:hover {
+          background-color: #46484d;
+          cursor: pointer;
+        }
 
         span.title {
           color: #58d898;
@@ -287,6 +292,5 @@ nav {
       margin-top: 2em;
       width: 100%;
     }
-
   }
 }

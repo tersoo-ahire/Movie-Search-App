@@ -231,8 +231,12 @@ nav .right-nav a .github:hover {
   justify-content: space-between;
   gap: 1em;
   margin: 0;
-  padding: 1em 0em;
+  padding: 1em 1.5em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.639);
+}
+.homepage .movieinfo-container .sub-container .movie-list:hover {
+  background-color: #46484d;
+  cursor: pointer;
 }
 .homepage .movieinfo-container .sub-container .movie-list span.title {
   color: #58d898;
