@@ -1,5 +1,6 @@
 import React from "react";
 import Search from "../components/Search";
+import MovieInfo from "../components/MovieInfo";
 import illustration1 from "../assets/illustration1.svg";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       </header>
 
       <Search />
+      <MovieInfo />
     </main>
   );
 }

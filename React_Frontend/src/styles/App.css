@@ -137,7 +137,7 @@ nav .right-nav a .github:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5em;
+  gap: 2.25em;
   margin: 5em 6em 0em 6em;
   padding: 4em 5em;
   background-color: #25262A;
@@ -149,7 +149,7 @@ nav .right-nav a .github:hover {
   font-weight: 800;
   margin: 0;
 }
-.homepage .search-container .input-container {
+.homepage .search-container .search-input-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -157,26 +157,51 @@ nav .right-nav a .github:hover {
   width: 80%;
   border-radius: 2em;
 }
-.homepage .search-container .input-container .search-icon {
+.homepage .search-container .search-input-container .search-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(70, 72, 77, 0.8117647059);
   width: 10%;
   padding: 1.15em 0em;
-  border-top-left-radius: 1.8rem;
-  border-bottom-left-radius: 1.8rem;
+  border-top-left-radius: 1.8em;
+  border-bottom-left-radius: 1.8em;
   z-index: 3;
 }
-.homepage .search-container .input-container input {
+.homepage .search-container .search-input-container input {
+  background: #ffffff;
   width: 90%;
   outline: none;
   border: none;
-  border-radius: inherit;
+  border-top-left-radius: none;
+  border-top-right-radius: inherit;
+  border-bottom-left-radius: none;
+  border-bottom-right-radius: inherit;
   padding: 1.15em;
+  font-size: 1.15rem;
+  color: #25262A;
+}
+.homepage .search-container .bottom-input-container {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+.homepage .search-container .bottom-input-container select {
+  background: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  padding: 1em;
   font-size: 1.15rem;
   color: #25262A;
 }
 .homepage .search-container:focus-within {
   box-shadow: 0 0 8px 1px gold;
+}
+.homepage .search-container .button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }/*# sourceMappingURL=App.css.map */

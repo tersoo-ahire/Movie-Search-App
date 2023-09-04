@@ -48,7 +48,10 @@ export default function Navigation() {
           />
           Docs
         </Link>
-        <a href="#">
+        <a
+          href="https://github.com/tersoo-ahire/Movie-Search-App"
+          target="_blank"
+        >
           <FontAwesomeIcon
             icon={faGithub}
             size="xl"

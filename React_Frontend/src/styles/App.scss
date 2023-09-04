@@ -155,7 +155,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5em;
+    gap: 2.25em;
     margin: 5em 6em 0em 6em;
     padding: 4em 5em;
     background-color: $darkgrey;
@@ -168,7 +168,7 @@ nav {
       margin: 0;
     }
 
-    .input-container {
+    .search-input-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -183,23 +183,52 @@ nav {
         background-color: #46484dcf;
         width: 10%;
         padding: 1.15em 0em;
-        border-top-left-radius: 1.8rem;
-        border-bottom-left-radius: 1.8rem;
+        border-top-left-radius: 1.8em;
+        border-bottom-left-radius: 1.8em;
         z-index: 3;
       }
 
       input {
+        background: #ffffff;
         width: 90%;
         outline: none;
         border: none;
-        border-radius: inherit;
+        border-top-left-radius: none;
+        border-top-right-radius: inherit;
+        border-bottom-left-radius: none;
+        border-bottom-right-radius: inherit;
         padding: 1.15em;
         font-size: 1.15rem;
         color: $darkgrey;
       }
     }
+
+    .bottom-input-container {
+      display: flex;
+      width: 80%;
+      align-items: center;
+      justify-content: center;
+      gap: 2em;
+
+      select {
+        background: #ffffff;
+        outline: none;
+        border: none;
+        border-radius: 0.5em;
+        padding: 1em;
+        font-size: 1.15rem;
+        color: $darkgrey;
+      }
+    }
+
     &:focus-within {
       box-shadow: 0 0 8px 1px $gold;
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
     }
   }
 }
