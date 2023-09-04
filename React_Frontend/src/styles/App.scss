@@ -231,4 +231,62 @@ nav {
       flex-direction: column;
     }
   }
+
+  .movieinfo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5em 6em 0em 6em;
+    padding: 2.5em 1.5em;
+    border: 2px solid #25262a;
+    box-shadow: 0 11px 15px #0003;
+    border-radius: 10px;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .sub-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      height: auto;
+      width: 100%;
+
+      .movie-list {
+        display: flex;
+        justify-content: space-between;
+        gap: 1em;
+        margin: 0;
+        padding: 1em 0em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.639);
+
+        span.title {
+          color: #58d898;
+          font-weight: 600;
+          width: 35%;
+        }
+
+        span {
+          font-weight: 500;
+          color: #ffffff;
+          width: 18%;
+        }
+
+        span.value {
+          font-weight: 400;
+          font-style: italic;
+          color: #b1b3b8;
+        }
+      }
+    }
+
+    .results {
+      font-size: 1.15rem;
+      margin-top: 2em;
+      width: 100%;
+    }
+
+  }
 }

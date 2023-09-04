@@ -11,7 +11,17 @@ export default function Search() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { setMovieData } = useMovieData(); // Access the setMovieData function from context
+
+  const openShowError = () => {
+    setShowError(true);
+  };
+
+  const closeShowError = () => {
+    setShowError(false);
+  };
 
   const handleChange = (event) => {
     setFormData((prevState) => ({
@@ -30,22 +40,26 @@ export default function Search() {
     try {
       const encodedTitle = encodeURIComponent(formData.title);
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`,
+        `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
         {
           response: formData.response,
         }
       );
       if (response.data.Response === "True") {
-        // Handle the case when the response contains valid movie data
-        console.log(response.data); // Access the search results here
         setMovieData(response.data); // Set the movie data to be displayed.
       } else {
-        // Handle the case when no movies are found
-        console.log("No movies found.");
-        console.log(response.status);
-        console.log(response.data);
-        // Reset the movie data state
-        setMovieData(false);
+        setMovieData(false); // Reset the movie data state
+        let countdown = 5; // Set 3 second countdown on error message
+        const countdownInterval = setInterval(() => {
+          countdown--;
+          setErrorMessage("No movies were found");
+          openShowError();
+
+          if (countdown === 0) {
+            clearInterval(countdownInterval);
+            closeShowError();
+          }
+        }, 1000);
       }
     } catch (error) {
       console.error("Error Status:", error.status);
@@ -54,7 +68,7 @@ export default function Search() {
       // Reset the movie data state
       setMovieData(false);
     }
-    setFormData({ title: "",});
+    setFormData({ title: "" });
     setLoading(false);
   };
 
@@ -86,6 +100,7 @@ export default function Search() {
           beat
         />
       )}
+      {showError && <p>{errorMessage}</p>}
       <div className="button-container">
         <p>
           By using our service you are accepting our{" "}

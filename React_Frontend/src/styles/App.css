@@ -204,4 +204,53 @@ nav .right-nav a .github:hover {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+.homepage .movieinfo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5em 6em 0em 6em;
+  padding: 2.5em 1.5em;
+  border: 2px solid #25262a;
+  box-shadow: 0 11px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.homepage .movieinfo-container h2 {
+  font-size: 2rem;
+}
+.homepage .movieinfo-container .sub-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: auto;
+  width: 100%;
+}
+.homepage .movieinfo-container .sub-container .movie-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0;
+  padding: 1em 0em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.639);
+}
+.homepage .movieinfo-container .sub-container .movie-list span.title {
+  color: #58d898;
+  font-weight: 600;
+  width: 35%;
+}
+.homepage .movieinfo-container .sub-container .movie-list span {
+  font-weight: 500;
+  color: #ffffff;
+  width: 18%;
+}
+.homepage .movieinfo-container .sub-container .movie-list span.value {
+  font-weight: 400;
+  font-style: italic;
+  color: #b1b3b8;
+}
+.homepage .movieinfo-container .results {
+  font-size: 1.15rem;
+  margin-top: 2em;
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */
