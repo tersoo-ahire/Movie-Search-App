@@ -287,13 +287,13 @@ footer {
       gap: 1em;
       height: auto;
       width: 100%;
-
+      
       .movie-list {
         display: flex;
         justify-content: space-between;
         gap: 1em;
         margin: 0;
-        padding: 1em 1.5em;
+        padding: 0em 1.5em;
         border-bottom: 1px solid rgba(255, 255, 255, 0.639);
         transition: 0.3s;
 
@@ -312,6 +312,7 @@ footer {
           font-weight: 500;
           color: #ffffff;
           width: 18%;
+          padding: 1em 0em;
         }
 
         span.value {
@@ -347,75 +348,97 @@ footer {
           margin-top: 4em;
           border: 1px solid rgba(255, 255, 255, 0.35);
           border-radius: 0.5em;
-          overflow-x: hidden;
-          overflow-y: auto;
+          overflow: hidden;
 
-          .cancel-button {
+          .top-area {
             display: flex;
-            justify-content: left;
-            width: 3%;
-            background-color: rgba(255, 255, 255, 0.473);
-            padding: 0.15em;
-            border-radius: 50%;
+            align-items: center;
+            gap: 1em;
+
+            .icon-container {
+              display: flex;
+              width: 25%;
+              justify-content: left;
+            }
+
+            h3 {
+              font-size: 1.75rem;
+              font-weight: 700;
+              color: #58d898;
+              margin: 0;
+              width: 75%;
+            }
           }
 
           .information-sub-area {
             display: flex;
             flex-direction: row;
             gap: 1em;
+            overflow-x: hidden;
 
             .image-container {
               display: flex;
+              align-items: first baseline;
               width: 25%;
-
+              overflow: hidden;
+              
               img {
                 width: 100%;
                 object-fit: contain;
+                transition: 0.5s;
+
+                &:hover {
+                  transform: scale(1.05);
+                }
               }
             }
 
-            .text-container {
+            .text-container-wrapper {
               display: flex;
               flex-direction: column;
               width: 75%;
               gap: 1em;
+              overflow-x: hidden;
+              overflow-y: scroll;
 
-              h4 {
-                font-size: 1.5rem;
-                font-weight: 600;
-                color: #58d898;
-                margin: 0;
+              .text-container {
+                display: flex;
+                flex-direction: column;
+                width: 95%;
+                gap: 1em;
+
+                span {
+                  font-weight: 500;
+                  color: #ffffff;
+                }
+
+                span.value {
+                  font-weight: 400;
+                  font-style: italic;
+                  color: #b1b3b8;
+                }
               }
 
-              span {
-                font-weight: 500;
-                color: #ffffff;
+              /* Add custom styles for the scrollbar */
+              &::-webkit-scrollbar {
+                width: 6px; /* Width of the scrollbar */
               }
 
-              span.value {
-                font-weight: 400;
-                font-style: italic;
-                color: #b1b3b8;
+              &::-webkit-scrollbar-track {
+                background: #e8e8e8; /* Background color of the scrollbar track */
+                border-radius: 1em;
+              }
+
+              &::-webkit-scrollbar-thumb {
+                background: #555555c6; /* Color of the scrollbar thumb (the draggable part) */
+                border-radius: 1em;
+              }
+
+              &::-webkit-scrollbar-thumb:hover {
+                background: #ababab; /* Color of the scrollbar thumb on hover */
               }
             }
           }
-        }
-
-        /* Add custom styles for the scrollbar */
-        ::-webkit-scrollbar {
-          width: 14px; /* Width of the scrollbar */
-        }
-
-        ::-webkit-scrollbar-track {
-          background: #ffffff; /* Background color of the scrollbar track */
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: #555555c6; /* Color of the scrollbar thumb (the draggable part) */
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: #ababab; /* Color of the scrollbar thumb on hover */
         }
       }
     }

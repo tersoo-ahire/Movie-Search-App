@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faRectangleXmark } from "@fortawesome/free-regular-svg-icons";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import genericbanner from "../assets/generic_banner.png";
 import { useMovieData } from "../Context";
@@ -16,22 +16,29 @@ export default function MovieInfo() {
   const apiKey = "fde9193e";
   const buttonRef = useRef();
 
+  const { movieData2 } = useMovieData2(); //Access movieData2 state from context
   const { setMovieData2 } = useMovieData2(); // Access the setMovieData2 function from context
 
   const openMovieModal = (movie) => {
     setLoading(true);
     setSelectedMovieTitle(movie.Title); // Update the selected movie title
 
-    let countdown = 2; // Set 1 second countdown for displaying information
+    let countdown = 2; // Set 2 seconds countdown for displaying information
     const countdownInterval = setInterval(() => {
       countdown--;
 
       if (countdown === 0) {
         clearInterval(countdownInterval);
         setLoading(false);
-        // Programmatically click the submit button
-        buttonRef.current.click();
-        setSelectedMovie(movie); // Show movie information once countdown ends
+        // Check if buttonRef.current is not null before clicking
+        if (buttonRef.current) {
+          // Programmatically click the submit button
+          buttonRef.current.click();
+          setSelectedMovie(movie); // Show movie information once countdown ends
+        } else {
+          alert("A remote server error occured😢, please refresh and try again🙏. ")
+          window.location.reload();
+        }
       }
     }, 1000);
   };
@@ -53,7 +60,7 @@ export default function MovieInfo() {
     event.preventDefault();
     console.log("submit title:", selectedMovieTitle);
 
-    // HANDLE API REQUESTS FOR TITLE
+    // HANDLE API REQUESTS FOR SUBMITTING TITLE
     try {
       const encodedTitle = encodeURIComponent(selectedMovieTitle);
       const response = await axios.get(
@@ -65,7 +72,7 @@ export default function MovieInfo() {
         console.log(response.data);
       } else {
         setMovieData2(false); // Reset the second movie data state
-        alert("An error occurred, please try again later!")
+        alert("An error occurred, please try again later!");
       }
     } catch (error) {
       console.error("Error:", error); // Log the error object
@@ -89,15 +96,15 @@ export default function MovieInfo() {
                 <span className="title" onClick={() => openMovieModal(result)}>
                   {result.Title}
                 </span>
-                <span>
+                <span onClick={() => openMovieModal(result)}>
                   Type:
                   <span className="value"> {result.Type}</span>
                 </span>
-                <span>
+                <span onClick={() => openMovieModal(result)}>
                   Year:
                   <span className="value"> {result.Year}</span>
                 </span>
-                <span>
+                <span onClick={() => openMovieModal(result)}>
                   IMBD Id:
                   <span className="value"> {result.imdbID}</span>
                 </span>
@@ -115,12 +122,16 @@ export default function MovieInfo() {
                   onClick={handleModalClick}
                 >
                   <div className="information-area" ref={selectedMovieRef}>
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      onClick={closeMovieModal}
-                      size="xl"
-                      className="cancel-button"
-                    />
+                    <div className="top-area">
+                      <div className="icon-container">
+                        <FontAwesomeIcon
+                          icon={faRectangleXmark}
+                          onClick={closeMovieModal}
+                          size="2xl"
+                        />
+                      </div>
+                      <h3>{selectedMovie.Title}</h3>
+                    </div>
                     <div className="information-sub-area">
                       <div className="image-container">
                         <img
@@ -132,20 +143,90 @@ export default function MovieInfo() {
                           alt="Poster"
                         />
                       </div>
-                      <div className="text-container">
-                        <h4>{selectedMovie.Title}</h4>
-                        <span>
-                          Type:
-                          <span className="value"> {selectedMovie.Type}</span>
-                        </span>
-                        <span>
-                          Year:
-                          <span className="value"> {selectedMovie.Year}</span>
-                        </span>
-                        <span>
-                          IMBD Id:
-                          <span className="value"> {selectedMovie.imdbID}</span>
-                        </span>
+                      <div className="text-container-wrapper">
+                        <div className="text-container">
+                          <span>
+                            Plot:
+                            <span className="value"> {movieData2.Plot}</span>
+                          </span>
+                          <span>
+                            Released:
+                            <span className="value">
+                              {" "}
+                              {movieData2.Released}
+                            </span>
+                          </span>
+                          <span>
+                            Genre:
+                            <span className="value"> {movieData2.Genre}</span>
+                          </span>
+                          <span>
+                            Type:
+                            <span className="value"> {selectedMovie.Type}</span>
+                          </span>
+                          <span>
+                            Length:
+                            <span className="value"> {movieData2.Runtime}</span>
+                          </span>
+                          <span>
+                            Director:
+                            <span className="value">
+                              {" "}
+                              {movieData2.Director}
+                            </span>
+                          </span>
+                          <span>
+                            Writer(s):
+                            <span className="value"> {movieData2.Writer}</span>
+                          </span>
+                          <span>
+                            Actors:
+                            <span className="value"> {movieData2.Actors}</span>
+                          </span>
+                          <span>
+                            Language:
+                            <span className="value">
+                              {" "}
+                              {movieData2.Language}
+                            </span>
+                          </span>
+                          <span>
+                            Country:
+                            <span className="value"> {movieData2.Country}</span>
+                          </span>
+                          <span>
+                            Awards:
+                            <span className="value"> {movieData2.Awards}</span>
+                          </span>
+                          <span>
+                            IMDB Rating:
+                            <span className="value">
+                              {" "}
+                              {movieData2.imdbRating}
+                            </span>
+                          </span>
+                          <span>
+                            IMDB Votes:
+                            <span className="value">
+                              {" "}
+                              {movieData2.imdbVotes}
+                            </span>
+                          </span>
+                          <span>
+                            IMBD Id:
+                            <span className="value">
+                              {" "}
+                              {selectedMovie.imdbID}
+                            </span>
+                          </span>
+                          <span>
+                            Box Office:
+                            <span className="value">
+                              {" "}
+                              {movieData2.BoxOffice}
+                            </span>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
