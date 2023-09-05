@@ -262,6 +262,7 @@ footer .right-footer {
   margin: 0;
   padding: 1em 1.5em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.639);
+  transition: 0.3s;
 }
 .homepage .movieinfo-container .sub-container .movie-list:hover {
   background-color: #46484d;

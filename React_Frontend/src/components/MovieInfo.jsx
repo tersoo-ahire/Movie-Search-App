@@ -12,7 +12,7 @@ export default function MovieInfo() {
           <h2>Search Results</h2>
           {movieData.Search.map((result, index) => (
             <div className="sub-container" key={index}>
-              <div className="movie-list">
+              <div className="movie-list" title="Click to see more information">
                 <span className="title">{result.Title}</span>
                 <span>
                   Type:
