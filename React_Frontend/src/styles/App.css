@@ -132,6 +132,7 @@ footer .right-footer {
   display: flex;
   flex-direction: column;
   margin: 5em 0em;
+  position: relative;
 }
 .homepage .hero-container {
   display: flex;
@@ -282,6 +283,91 @@ footer .right-footer {
   font-weight: 400;
   font-style: italic;
   color: #b1b3b8;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: fixed;
+  background-color: rgba(11, 11, 11, 0);
+  transition: all 0.3s ease-in-out;
+  /* Add custom styles for the scrollbar */
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  background-color: #25262A;
+  width: 70%;
+  height: 450px;
+  max-height: 450px;
+  color: #ffffff;
+  padding: 1.5em;
+  margin-top: 4em;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.5em;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .cancel-button {
+  display: flex;
+  justify-content: left;
+  width: 3%;
+  background-color: rgba(255, 255, 255, 0.473);
+  padding: 0.15em;
+  border-radius: 50%;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .image-container {
+  display: flex;
+  width: 25%;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .image-container img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .text-container {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  gap: 1em;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .text-container h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #58d898;
+  margin: 0;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .text-container span {
+  font-weight: 500;
+  color: #ffffff;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .text-container span.value {
+  font-weight: 400;
+  font-style: italic;
+  color: #b1b3b8;
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container ::-webkit-scrollbar {
+  width: 14px; /* Width of the scrollbar */
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container ::-webkit-scrollbar-track {
+  background: #ffffff; /* Background color of the scrollbar track */
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container ::-webkit-scrollbar-thumb {
+  background: rgba(85, 85, 85, 0.7764705882); /* Color of the scrollbar thumb (the draggable part) */
+}
+.homepage .movieinfo-container .sub-container .movie-modal-container ::-webkit-scrollbar-thumb:hover {
+  background: #ababab; /* Color of the scrollbar thumb on hover */
 }
 .homepage .movieinfo-container .results {
   font-size: 1.15rem;
