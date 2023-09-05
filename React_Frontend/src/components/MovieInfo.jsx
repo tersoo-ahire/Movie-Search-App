@@ -1,31 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import genericbanner from "../assets/generic_banner.png";
 import { useMovieData } from "../Context";
+import { useMovieData2 } from "../Context";
+import axios from "axios";
 
 export default function MovieInfo() {
   const { movieData } = useMovieData(); // Access the movieData State from context
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedMovieTitle, setSelectedMovieTitle] = useState(""); // New state for selected movie title
+  const selectedMovieRef = useRef();
+  const apiKey = "fde9193e";
+  const buttonRef = useRef();
+
+  const { setMovieData2 } = useMovieData2(); // Access the setMovieData2 function from context
 
   const openMovieModal = (movie) => {
     setLoading(true);
-    let countdown = 1; // Set 1 second countdown for displaying information
+    setSelectedMovieTitle(movie.Title); // Update the selected movie title
+
+    let countdown = 2; // Set 1 second countdown for displaying information
     const countdownInterval = setInterval(() => {
       countdown--;
 
       if (countdown === 0) {
         clearInterval(countdownInterval);
         setLoading(false);
+        // Programmatically click the submit button
+        buttonRef.current.click();
         setSelectedMovie(movie); // Show movie information once countdown ends
       }
     }, 1000);
   };
 
   const closeMovieModal = () => {
-    setSelectedMovie(null);
+    setSelectedMovie(false);
+  };
+
+  const handleModalClick = (event) => {
+    if (
+      selectedMovieRef.current &&
+      !selectedMovieRef.current.contains(event.target)
+    ) {
+      closeMovieModal();
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("submit title:", selectedMovieTitle);
+
+    // HANDLE API REQUESTS FOR TITLE
+    try {
+      const encodedTitle = encodeURIComponent(selectedMovieTitle);
+      const response = await axios.get(
+        `http://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
+      );
+      if (response.data.Response === "True") {
+        setMovieData2(response.data); // Set the second movie data to be displayed.
+        console.log(response.status);
+        console.log(response.data);
+      } else {
+        setMovieData2(false); // Reset the second movie data state
+        alert("An error occurred, please try again later!")
+      }
+    } catch (error) {
+      console.error("Error:", error); // Log the error object
+      // Reset the second movie data state
+      setMovieData2(false);
+    }
   };
 
   return (
@@ -35,12 +81,14 @@ export default function MovieInfo() {
           <h2>Search Results</h2>
           {movieData.Search.map((result, index) => (
             <div className="sub-container" key={index}>
-              <div
+              <form
                 className="movie-list"
                 title="Click to see more information"
-                onClick={() => openMovieModal(result)}
+                onSubmit={handleSubmit}
               >
-                <span className="title">{result.Title}</span>
+                <span className="title" onClick={() => openMovieModal(result)}>
+                  {result.Title}
+                </span>
                 <span>
                   Type:
                   <span className="value"> {result.Type}</span>
@@ -53,10 +101,20 @@ export default function MovieInfo() {
                   IMBD Id:
                   <span className="value"> {result.imdbID}</span>
                 </span>
-              </div>
+                <button
+                  type="submit"
+                  ref={buttonRef}
+                  style={{ display: "none" }}
+                >
+                  View
+                </button>
+              </form>
               {selectedMovie && (
-                <div className="movie-modal-container">
-                  <div className="information-area">
+                <div
+                  className="movie-modal-container"
+                  onClick={handleModalClick}
+                >
+                  <div className="information-area" ref={selectedMovieRef}>
                     <FontAwesomeIcon
                       icon={faXmark}
                       onClick={closeMovieModal}
