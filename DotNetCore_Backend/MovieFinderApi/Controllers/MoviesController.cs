@@ -23,23 +23,23 @@ namespace MovieFinderApi.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchMovies([FromQuery] string title)
+        public async Task<IActionResult> SearchMovies([FromQuery] string s)
         {
             try
             {
                 // Make a request to the OMDB API to search for movies using the provided title
                 // Process the response and return the search results as JSON
                 var apiKey = "fde9193e";
-                var encodedTitle = WebUtility.UrlEncode(title);
+                var encodedTitle = WebUtility.UrlEncode(s);
                 var apiUrl = $"http://www.omdbapi.com/?apikey={apiKey}&s={encodedTitle}";
 
                 using var client = new HttpClient();
                 var response = await client.GetStringAsync(apiUrl);
-                var result = JsonConvert.DeserializeObject<MovieSearchResult>(response);
+                var searchDetails = JsonConvert.DeserializeObject<MovieSearchResult>(response);
 
-                if (result?.Search != null)
+                if (searchDetails != null && searchDetails.Response == "True")
                 {
-                    return Ok(result.Search);
+                    return Ok(searchDetails);
                 }
                 else
                 {
@@ -60,7 +60,8 @@ namespace MovieFinderApi.Controllers
             {
                 // Replace "YOUR_OMDB_API_KEY" with your actual OMDB API key
                 var apiKey = "fde9193e";
-                var apiUrl = $"http://www.omdbapi.com/?apikey={apiKey}&t={t}";
+                var encodedTitle = WebUtility.UrlEncode(t);
+                var apiUrl = $"http://www.omdbapi.com/?apikey={apiKey}&t={encodedTitle}";
 
                 using var client = new HttpClient();
                 var response = await client.GetStringAsync(apiUrl);

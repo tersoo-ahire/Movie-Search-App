@@ -117,21 +117,21 @@ export default function MovieInfo() {
       if (error.isAxiosError && !isOnline) {
         // Network error
         console.log("1st Error")
-        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        console.error(error)
         alert("Network error. Please check your network connection and try again.");
         // Reset the movie data state
         setMovieData2(false);
-      } else if (error.isAxiosError && error.response === undefined) {
+      } else if (error.isAxiosError && error.Response === False) {
         // Server unreachable
         console.log("2nd Error")
-        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        console.error(error)
         alert("Sorry, the server is currently unreachable. Please try again later.");
         // Reset the movie data state
         setMovieData2(false);
       } else {
         // General Error
         console.log("3rd Error")
-        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        console.error(error)
         alert("An unexpected error occurred. Please try again.");
         // Reset the movie data state
         setMovieData2(false);
