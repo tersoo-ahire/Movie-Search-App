@@ -19,27 +19,39 @@ namespace MovieFinderApi.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchMovies([FromQuery] string s)
+        public async Task<ActionResult<MovieSearchResult>> SearchMovies([FromQuery] string s)
         {
             try
             {
                 // Make a request to the OMDB API to search for movies using the provided title
                 // Process the response and return the search results as JSON
-                var apiKey = "fde9193e";
+                const string apiKey = "fde9193e";
                 var encodedTitle = WebUtility.UrlEncode(s);
                 var apiUrl = $"http://www.omdbapi.com/?apikey={apiKey}&s={encodedTitle}";
 
                 using var client = new HttpClient();
-                var response = await client.GetStringAsync(apiUrl);
-                var searchDetails = JsonConvert.DeserializeObject<MovieSearchResult>(response);
-
-                if (searchDetails != null && searchDetails.Response == "True")
+                var response = await client.GetAsync(apiUrl);
+                // Check the status code of the response
+                if (response.IsSuccessStatusCode)
                 {
-                    return Ok(searchDetails);
+                    // Only deserialize the content if the status code is successful
+                    var content = await response.Content.ReadAsStringAsync();
+                    var searchDetails = JsonConvert.DeserializeObject<MovieSearchResult>(content);
+
+                    // The rest of your logic
+                    if (searchDetails != null && searchDetails.Response == "True")
+                    {
+                        return Ok(searchDetails);
+                    }
+                    else
+                    {
+                        return NotFound("No movies found.");
+                    }
                 }
                 else
                 {
-                    return NotFound("No movies found.");
+                    // Handle the error if the status code is not successful
+                    return StatusCode((int)response.StatusCode, "An error occurred while calling the OMDB API.");
                 }
             }
             catch (Exception ex)
@@ -50,26 +62,39 @@ namespace MovieFinderApi.Controllers
         }
 
         [HttpGet("movie-details")]
-        public async Task<IActionResult> GetMovieDetailsByTitle([FromQuery] string t)
+        public async Task<ActionResult<MovieDetailResult>> GetMovieTitle([FromQuery] string t)
         {
             try
             {
                 // Replace "YOUR_OMDB_API_KEY" with your actual OMDB API key
-                var apiKey = "fde9193e";
+                const string apiKey = "fde9193e";
                 var encodedTitle = WebUtility.UrlEncode(t);
                 var apiUrl = $"http://www.omdbapi.com/?apikey={apiKey}&t={encodedTitle}";
 
                 using var client = new HttpClient();
-                var response = await client.GetStringAsync(apiUrl);
-                var movieDetails = JsonConvert.DeserializeObject<MovieDetailResult>(response);
+                var response = await client.GetAsync(apiUrl);
 
-                if (movieDetails != null && movieDetails.Response == "True")
+                // Check the status code of the response
+                if (response.IsSuccessStatusCode)
                 {
-                    return Ok(movieDetails);
+                    // Only deserialize the content if the status code is successful
+                    var content = await response.Content.ReadAsStringAsync();
+                    var movieDetails = JsonConvert.DeserializeObject<MovieDetailResult>(content);
+
+                    // The rest of your logic
+                    if (movieDetails != null && movieDetails.Response == "True")
+                    {
+                        return Ok(movieDetails);
+                    }
+                    else
+                    {
+                        return NotFound("No movies found.");
+                    }
                 }
                 else
                 {
-                    return NotFound("Movie details not found.");
+                    // Handle the error if the status code is not successful
+                    return StatusCode((int)response.StatusCode, "An error occurred while calling the OMDB API.");
                 }
             }
             catch (Exception ex)
