@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MovieFinderApi.Models;
 using Newtonsoft.Json;
-using System;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Cors; // Import the CORS namespace
 
 namespace MovieFinderApi.Controllers

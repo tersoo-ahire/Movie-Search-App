@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using MovieFinderApi.Models; // Import your model classes
 
 namespace YourNamespace
@@ -23,19 +18,8 @@ namespace YourNamespace
             services.AddControllers();
 
             // Register your model classes with dependency injection (if needed)
-            services.AddSingleton<MovieSearchResult>();
-            services.AddSingleton<MovieDetailResult>();
-
-            // Configure CORS
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowLocalhost5173", builder =>
-                {
-                    builder.WithOrigins("http://localhost:5173")
-                           .AllowAnyHeader()
-                           .AllowAnyMethod();
-                });
-            });
+            services.AddScoped<MovieSearchResult>();
+            services.AddScoped<MovieDetailResult>();
 
             // Configure other services such as authentication, databases, etc. as needed.
         }
@@ -55,6 +39,10 @@ namespace YourNamespace
 
             // Enable routing and add your controllers to the pipeline
             app.UseRouting();
+
+            // Enable CORS
+            app.UseCors(options => options.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
