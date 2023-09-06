@@ -106,7 +106,7 @@ export default function Search({ onSearchSuccess }) {
           beat
         />
       )}
-      {showError && <p>{errorMessage}</p>}
+      {showError && <p className="error-message">{errorMessage}</p>}
       <div className="button-container">
         <p>
           By using our service you are accepting our{" "}

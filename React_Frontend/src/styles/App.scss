@@ -264,6 +264,13 @@ footer {
       align-items: center;
       flex-direction: column;
     }
+
+    .error-message {
+      background: #EF44441A;
+      padding: 0.5em 0.75em;
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      border-radius: 0.25em;
+    }
   }
 
   .movieinfo-container {

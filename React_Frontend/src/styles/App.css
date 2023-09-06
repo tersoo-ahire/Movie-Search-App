@@ -235,6 +235,12 @@ footer .right-footer {
   align-items: center;
   flex-direction: column;
 }
+.homepage .search-container .error-message {
+  background: rgba(239, 68, 68, 0.1019607843);
+  padding: 0.5em 0.75em;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  border-radius: 0.25em;
+}
 .homepage .movieinfo-container {
   display: flex;
   flex-direction: column;
