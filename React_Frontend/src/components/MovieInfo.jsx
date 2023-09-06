@@ -6,6 +6,7 @@ import genericbanner from "../assets/generic_banner.png";
 import { useMovieData } from "../Context";
 import { useMovieData2 } from "../Context";
 import axios from "axios";
+import BASE_URL from "../Config"; // Import the BASE_URL
 
 export default function MovieInfo() {
   const { movieData } = useMovieData(); // Access the movieData State from context
@@ -13,7 +14,7 @@ export default function MovieInfo() {
   const [loading, setLoading] = useState(false);
   const [selectedMovieTitle, setSelectedMovieTitle] = useState(""); // New state for selected movie title
   const selectedMovieRef = useRef();
-  const apiKey = "fde9193e";
+  // const apiKey = "fde9193e";
   const buttonRef = useRef();
 
   const { movieData2 } = useMovieData2(); //Access movieData2 state from context
@@ -23,7 +24,7 @@ export default function MovieInfo() {
     setLoading(true);
     setSelectedMovieTitle(movie.Title); // Update the selected movie title
 
-    let countdown = 2; // Set 2 seconds countdown for displaying information
+    let countdown = 3; // Set 3 seconds countdown for displaying information
     const countdownInterval = setInterval(() => {
       countdown--;
 
@@ -36,7 +37,10 @@ export default function MovieInfo() {
           buttonRef.current.click();
           setSelectedMovie(movie); // Show movie information once countdown ends
         } else {
-          alert("A remote server error occured😢, please refresh and try again🙏. ")
+          alert(
+            "A remote server error occured😢, please refresh and try again🙏. "
+          );
+          console.log("A remote server error occurred.");
           window.location.reload();
         }
       }
@@ -62,17 +66,25 @@ export default function MovieInfo() {
 
     // HANDLE API REQUESTS FOR SUBMITTING TITLE
     try {
-      const encodedTitle = encodeURIComponent(selectedMovieTitle);
-      const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
-      );
+      // const encodedTitle = encodeURIComponent(selectedMovieTitle);
+      // const response = await axios.get(
+      //   `http://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
+      // );
+      const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
       if (response.data.Response === "True") {
         setMovieData2(response.data); // Set the second movie data to be displayed.
-        console.log(response.status);
+        console.log(response.data);
+      } else if (response.data.Response === "False") {
+        setMovieData2(response.data);
+        alert("An error occurred, please refresh and try again later!");
+        closeMovieModal();
         console.log(response.data);
       } else {
-        setMovieData2(false); // Reset the second movie data state
-        alert("An error occurred, please try again later!");
+        alert(
+          "A network error had occurred, please refesh and try again later!"
+        );
+        window.location.reload();
+        console.log(response.data);
       }
     } catch (error) {
       console.error("Error:", error); // Log the error object

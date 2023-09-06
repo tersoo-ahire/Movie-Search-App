@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import { useMovieData } from "../Context";
+import BASE_URL from "../Config"; // Import the BASE_URL
 
 export default function Search({ onSearchSuccess }) {
   const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ export default function Search({ onSearchSuccess }) {
     }));
   };
 
-  const apiKey = "fde9193e";
+  // const apiKey = "fde9193e";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,13 +39,16 @@ export default function Search({ onSearchSuccess }) {
 
     // INSERT CODE FOR HANDLING API REQUEST HERE
     try {
-      const encodedTitle = encodeURIComponent(formData.title);
+      // const encodedTitle = encodeURIComponent(formData.title);
+      // const response = await axios.get(
+      //   `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
+      //   {
+      //     response: formData.response,
+      //   }
+      // );
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
-        {
-          response: formData.response,
-        }
-      );
+        `${BASE_URL}/search?title=${formData.title}`
+      ); // NEW CODE
       if (response.data.Response === "True") {
         setMovieData(response.data); // Set the movie data to be displayed.
         let countdown = 1; // Set 1 second countdown on error message
