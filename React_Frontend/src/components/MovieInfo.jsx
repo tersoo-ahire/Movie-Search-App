@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRectangleXmark } from "@fortawesome/free-regular-svg-icons";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
@@ -19,8 +19,28 @@ export default function MovieInfo() {
 
   const { movieData2 } = useMovieData2(); //Access movieData2 state from context
   const { setMovieData2 } = useMovieData2(); // Access the setMovieData2 function from context
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   const openMovieModal = (movie) => {
+     // Check if the user is connected to the internet or not
+     if (!isOnline) {
+      alert("No internet connection. Please check your network and try again.");
+      return;
+    }
+
     setLoading(true);
     setSelectedMovieTitle(movie.Title); // Update the selected movie title
 
@@ -64,6 +84,12 @@ export default function MovieInfo() {
     event.preventDefault();
     console.log("submit title:", selectedMovieTitle);
 
+     // Check if the user is connected to the internet or not
+     if (!isOnline) {
+      alert("No internet connection. Please check your network and try again.");
+      return;
+    }
+
     // HANDLE API REQUESTS FOR SUBMITTING TITLE
     try {
       // const encodedTitle = encodeURIComponent(selectedMovieTitle);
@@ -87,9 +113,29 @@ export default function MovieInfo() {
         console.log(response.data);
       }
     } catch (error) {
-      console.error("Error:", error); // Log the error object
-      // Reset the second movie data state
-      setMovieData2(false);
+      // Log the error and inform the user 
+      if (error.isAxiosError && !isOnline) {
+        // Network error
+        console.log("1st Error")
+        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        alert("Network error. Please check your network connection and try again.");
+        // Reset the movie data state
+        setMovieData2(false);
+      } else if (error.isAxiosError && error.response === undefined) {
+        // Server unreachable
+        console.log("2nd Error")
+        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        alert("Sorry, the server is currently unreachable. Please try again later.");
+        // Reset the movie data state
+        setMovieData2(false);
+      } else {
+        // General Error
+        console.log("3rd Error")
+        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        alert("An unexpected error occurred. Please try again.");
+        // Reset the movie data state
+        setMovieData2(false);
+      }
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
@@ -15,6 +15,20 @@ export default function Search({ onSearchSuccess }) {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { setMovieData } = useMovieData(); // Access the setMovieData function from context
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   const openShowError = () => {
     setShowError(true);
@@ -36,6 +50,12 @@ export default function Search({ onSearchSuccess }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+
+    // Check if the user is connected to the internet or not
+    if (!isOnline) {
+      alert("No internet connection. Please check your network and try again.");
+      return;
+    }
 
     // INSERT CODE FOR HANDLING API REQUEST HERE
     try {
@@ -74,10 +94,30 @@ export default function Search({ onSearchSuccess }) {
         }, 1000);
       }
     } catch (error) {
-      console.error("Error:", error); // Log the error object
-      // Reset the movie data state
-      setMovieData(false);
-    }
+      // Log the error and inform the user 
+      if (error.isAxiosError && !isOnline) {
+        // Network error
+        console.log("1st Error")
+        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        alert("Network error. Please check your network connection and try again.");
+        // Reset the movie data state
+        setMovieData(false);
+      } else if (error.isAxiosError && error.response === undefined) {
+        // Server unreachable
+        console.log("2nd Error")
+        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        alert("Sorry, the server is currently unreachable. Please try again later.");
+        // Reset the movie data state
+        setMovieData(false);
+      } else {
+        // General Error
+        console.log("3rd Error")
+        console.error("Error status:", error.response.status, "Error data:", error.response.data)
+        alert("An unexpected error occurred. Please try again.");
+        // Reset the movie data state
+        setMovieData(false);
+      }
+    } 
     setFormData({ title: "" });
     setLoading(false);
   };
