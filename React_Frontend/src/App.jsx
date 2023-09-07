@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./styles/App.css";
-import "./styles/App_tablet_small.css"
+import "./styles/App_tablet_large.css";
+import "./styles/App_tablet_small.css";
 import "./styles/App_mobile.css";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";

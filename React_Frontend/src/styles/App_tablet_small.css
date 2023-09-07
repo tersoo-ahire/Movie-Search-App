@@ -90,10 +90,10 @@
     justify-content: start;
     padding: 0em 1.5em;
     padding-top: 2em;
-    height: 500px;
+    height: 550px;
     gap: 2em;
-    border-bottom-left-radius: 50% 2.5%;
-    border-bottom-right-radius: 50% 2.5%;
+    border-bottom-left-radius: 50% 7.5%;
+    border-bottom-right-radius: 50% 7.5%;
   }
   .homepage .hero-container .hero-container-left {
     width: 100%;

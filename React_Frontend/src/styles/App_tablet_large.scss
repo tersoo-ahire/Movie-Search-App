@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import "schema";
+
+@media (min-width: 701px) and (max-width: 1000px) {
+  nav {
+    padding: $largetabletpadding;
+
+    .left-nav {
+      img {
+        width: 60%;
+      }
+    }
+  }
+
+  footer {
+    padding: $largetabletpadding;
+
+    .left-footer {
+      width: 20%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    p {
+      width: 60%;
+    }
+
+    .right-footer {
+      width: 20%;
+    }
+  }
+
+  .homepage {
+    .hero-container {
+      height: 400px;
+      padding: $largetabletpadding;
+      border-bottom-left-radius: 50% 10%;
+      border-bottom-right-radius: 50% 10%;
+
+      .hero-container-left {
+        width: 50%;
+        gap: 2em;
+
+        h1 {
+          font-size: 2.85rem;
+        }
+      }
+
+      .hero-container-right {
+        width: 50%;
+        justify-content: right;
+
+        img {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
