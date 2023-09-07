@@ -21,12 +21,12 @@ export default function Search({ onSearchSuccess }) {
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
 
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
     return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
 
@@ -45,11 +45,12 @@ export default function Search({ onSearchSuccess }) {
     }));
   };
 
-  // const apiKey = "fde9193e";
+  const apiKey = "fde9193e";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    console.log(formData.title);
 
     // Check if the user is connected to the internet or not
     if (!isOnline) {
@@ -59,16 +60,16 @@ export default function Search({ onSearchSuccess }) {
 
     // INSERT CODE FOR HANDLING API REQUEST HERE
     try {
-      // const encodedTitle = encodeURIComponent(formData.title);
-      // const response = await axios.get(
-      //   `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
-      //   {
-      //     response: formData.response,
-      //   }
-      // );
+      const encodedTitle = encodeURIComponent(formData.title);
       const response = await axios.get(
-        `${BASE_URL}/search?s=${formData.title}`
-      ); // NEW CODE
+        `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
+        {
+          response: formData.response,
+        }
+      ); // OLD CODE
+      // const response = await axios.get(
+      //   `${BASE_URL}/search?s=${formData.title}`
+      // ); // NEW CODE
       if (response.data.Response === "True") {
         setMovieData(response.data); // Set the movie data to be displayed.
         let countdown = 1; // Set 1 second countdown on error message
@@ -86,6 +87,7 @@ export default function Search({ onSearchSuccess }) {
           countdown--;
           setErrorMessage("No movies were found");
           openShowError();
+          console.log("Message:", response.data);
 
           if (countdown === 0) {
             clearInterval(countdownInterval);
@@ -94,32 +96,44 @@ export default function Search({ onSearchSuccess }) {
         }, 1000);
       }
     } catch (error) {
-      // Log the error and inform the user 
+      // Log the error and inform the user
       if (error.isAxiosError && !isOnline) {
         // Network error
-        console.log("1st Error")
-        console.error(error)
-        alert("Network error. Please check your network connection and try again.");
-        // Reset the movie data state
-        setMovieData(false);
-      } else if (error.isAxiosError && error.Response === False) {
-        // Server unreachable
-        console.log("2nd Error")
-        console.error(error)
-        alert("Sorry, the server is currently unreachable. Please try again later.");
+        console.log("1st Error");
+        console.error(error);
+        alert(
+          "Network error. Please check your network connection and try again."
+        );
         // Reset the movie data state
         setMovieData(false);
       } else {
         // General Error
-        console.log("3rd Error")
-        console.error(error)
+        console.log("2nd Error");
+        console.error(error);
         alert("An unexpected error occurred. Please try again.");
         // Reset the movie data state
         setMovieData(false);
       }
-    } 
+    }
     setFormData({ title: "" });
     setLoading(false);
+  };
+
+  const test = async () => {
+    let testvalue = "Spiderman";
+
+    try {
+      const response = await axios.get(`${BASE_URL}/search?s=${testvalue}`);
+      if (response.data.Response === True) {
+        console.log(response.status);
+        console.log(response.data);
+      } else {
+        console.log(response.status);
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -170,6 +184,7 @@ export default function Search({ onSearchSuccess }) {
           Submit
         </button>
       </div>
+      {/* <button onClick={test}>TEST BUTTON</button> */}
     </form>
   );
 }

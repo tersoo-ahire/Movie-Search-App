@@ -4,7 +4,6 @@ import "./styles/App.css";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import MoviePage from "./components/MoviePage";
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/movie-page" element={<MoviePage />} />
       </Routes>
       <Footer />
     </>

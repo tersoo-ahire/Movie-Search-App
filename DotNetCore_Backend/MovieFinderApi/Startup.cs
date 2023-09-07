@@ -21,6 +21,16 @@ namespace YourNamespace
             services.AddScoped<MovieSearchResult>();
             services.AddScoped<MovieDetailResult>();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
+
             // Configure other services such as authentication, databases, etc. as needed.
         }
 
@@ -37,11 +47,15 @@ namespace YourNamespace
                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
+
             // Enable routing and add your controllers to the pipeline
             app.UseRouting();
 
             // Enable CORS
-            app.UseCors(options => options.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

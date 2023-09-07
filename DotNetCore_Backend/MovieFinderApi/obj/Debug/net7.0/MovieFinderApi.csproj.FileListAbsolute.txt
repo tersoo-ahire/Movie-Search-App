@@ -32,3 +32,4 @@ C:\Users\HP\OneDrive\Documents\JEAN EDWARDS\Movie-Search-App\DotNetCore_Backend\
 C:\Users\HP\OneDrive\Documents\JEAN EDWARDS\Movie-Search-App\DotNetCore_Backend\MovieFinderAPi\obj\Debug\net7.0\MovieFinderApi.genruntimeconfig.cache
 C:\Users\HP\OneDrive\Documents\JEAN EDWARDS\Movie-Search-App\DotNetCore_Backend\MovieFinderAPi\obj\Debug\net7.0\ref\MovieFinderApi.dll
 C:\Users\HP\OneDrive\Documents\JEAN EDWARDS\Movie-Search-App\DotNetCore_Backend\MovieFinderApi\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\HP\OneDrive\Documents\JEAN EDWARDS\Movie-Search-App\DotNetCore_Backend\MovieFinderApi\bin\Debug\net7.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
