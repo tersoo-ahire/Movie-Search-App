@@ -94,7 +94,7 @@ export default function MovieInfo() {
     try {
       const encodedTitle = encodeURIComponent(selectedMovieTitle);
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
+        `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
       ); // OLD CODE
       // const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
       if (response.data.Response === "True") {

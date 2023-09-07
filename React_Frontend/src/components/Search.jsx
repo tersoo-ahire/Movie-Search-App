@@ -62,7 +62,7 @@ export default function Search({ onSearchSuccess }) {
     try {
       const encodedTitle = encodeURIComponent(formData.title);
       const response = await axios.get(
-        `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
+        `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
         {
           response: formData.response,
         }
