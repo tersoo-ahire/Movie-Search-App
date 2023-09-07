@@ -57,5 +57,74 @@
         }
       }
     }
+
+    .search-container {
+      gap: 1.75em;
+      margin: 4em 3em 0em 3em;
+      padding: 3em 4em;
+
+      h2 {
+        font-size: 2.25rem;
+      }
+
+      .search-input-container {
+        width: 90%;
+        border-radius: 1.25em;
+
+        .search-icon {
+          padding: 0.9em 0em;
+          border-top-left-radius: 1.25em;
+          border-bottom-left-radius: 1.25em;
+        }
+
+        input {
+          padding: 0.9em;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .movieinfo-container {
+      margin: 4em 3em 0em 3em;
+      padding: 2em 1.25em;
+
+      .sub-container {
+        .movie-list {
+          padding: 0em 1.15em;
+          span {
+            padding: 0.8em 0em;
+          }
+
+        }
+        
+        .movie-modal-container {
+            .information-area {
+                width: 90%;
+                height: 400px;
+                margin-top: 5em;
+
+                .top-area {
+                    .icon-container {
+                        width: 30%;
+                    }
+
+                    h3 {
+                        width: 70%;
+                    }
+                }
+
+                .information-sub-area {
+                    .image-container {
+                        width: 30%;
+                    }
+
+                    .text-container-wrapper {
+                        width: 70%;
+                    }
+                }
+            }
+        }
+    }
+    }
   }
 }
