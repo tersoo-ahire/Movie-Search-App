@@ -61,6 +61,7 @@
   }
   footer p {
     width: 100%;
+    text-align: center;
   }
   footer .right-footer {
     display: none;
@@ -154,7 +155,7 @@
     padding: 0.5em;
   }
   .homepage .movieinfo-container .sub-container .movie-list span.title {
-    font-size: 1.15rem;
+    font-size: 1rem;
     width: 100%;
   }
   .homepage .movieinfo-container .sub-container .movie-list span {
@@ -187,5 +188,8 @@
   .homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .text-container-wrapper {
     flex-grow: 1;
     width: 100%;
+  }
+  .homepage .movieinfo-container .results {
+    font-size: 1rem;
   }
 }/*# sourceMappingURL=App_mobile.css.map */

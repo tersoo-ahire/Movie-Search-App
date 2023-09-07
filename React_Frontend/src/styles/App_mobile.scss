@@ -73,6 +73,7 @@
 
     p {
       width: 100%;
+      text-align: center;
     }
 
     .right-footer {
@@ -187,7 +188,7 @@
           padding: 0.5em;
 
           span.title {
-            font-size: 1.15rem;
+            font-size: 1rem;
             width: 100%;
           }
 
@@ -233,6 +234,10 @@
             }
           }
         }
+      }
+
+      .results {
+        font-size: 1rem;
       }
     }
   }
