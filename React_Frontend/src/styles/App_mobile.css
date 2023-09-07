@@ -91,8 +91,8 @@
     padding-top: 2em;
     height: 525px;
     gap: 2em;
-    border-bottom-left-radius: 50% 5%;
-    border-bottom-right-radius: 50% 5%;
+    border-bottom-left-radius: 50% 2.5%;
+    border-bottom-right-radius: 50% 2.5%;
   }
   .homepage .hero-container .hero-container-left {
     width: 100%;
@@ -110,5 +110,82 @@
   }
   .homepage .hero-container .hero-container-right img {
     width: 90%;
+  }
+  .homepage .search-container {
+    margin: 4em 1em 0em 1em;
+    padding: 2em 1.5em;
+    border-radius: 1em;
+    gap: 1.75em;
+  }
+  .homepage .search-container h2 {
+    font-size: 1.6rem;
+  }
+  .homepage .search-container .search-input-container {
+    width: 100%;
+    border-radius: 0.75em;
+  }
+  .homepage .search-container .search-input-container .search-icon {
+    width: 15%;
+    padding: 0.5em 0em;
+    border-top-left-radius: 0.75em;
+    border-bottom-left-radius: 0.75em;
+  }
+  .homepage .search-container .search-input-container input {
+    width: 85%;
+    padding: 0.5em 0.8em;
+    font-size: 1rem;
+  }
+  .homepage .search-container .button-container p {
+    text-align: center;
+  }
+  .homepage .search-container .error-message {
+    font-size: 0.9rem;
+  }
+  .homepage .movieinfo-container {
+    margin: 4em 1em 0em 1em;
+    padding: 1.5em 0.75em;
+  }
+  .homepage .movieinfo-container h2 {
+    font-size: 1.6rem;
+  }
+  .homepage .movieinfo-container .sub-container .movie-list {
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding: 0.5em;
+  }
+  .homepage .movieinfo-container .sub-container .movie-list span.title {
+    font-size: 1.15rem;
+    width: 100%;
+  }
+  .homepage .movieinfo-container .sub-container .movie-list span {
+    padding: 0.5em 0em;
+    width: 30%;
+  }
+  .homepage .movieinfo-container .sub-container .movie-modal-container .information-area {
+    width: 85%;
+    height: 400px;
+    max-height: 450px;
+    padding: 1em;
+  }
+  .homepage .movieinfo-container .sub-container .movie-modal-container .information-area .top-area .icon-container {
+    width: 10%;
+  }
+  .homepage .movieinfo-container .sub-container .movie-modal-container .information-area .top-area h3 {
+    font-size: 1.15rem;
+    width: 90%;
+  }
+  .homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area {
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .image-container {
+    flex-grow: 1;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .homepage .movieinfo-container .sub-container .movie-modal-container .information-area .information-sub-area .text-container-wrapper {
+    flex-grow: 1;
+    width: 100%;
   }
 }/*# sourceMappingURL=App_mobile.css.map */

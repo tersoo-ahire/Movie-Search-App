@@ -119,22 +119,22 @@ export default function Search({ onSearchSuccess }) {
     setLoading(false);
   };
 
-  const test = async () => {
-    let testvalue = "Spiderman";
+  // const test = async () => {
+  //   let testvalue = "Spiderman";
 
-    try {
-      const response = await axios.get(`${BASE_URL}/search?s=${testvalue}`);
-      if (response.data.Response === True) {
-        console.log(response.status);
-        console.log(response.data);
-      } else {
-        console.log(response.status);
-        console.log(response.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   try {
+  //     const response = await axios.get(`${BASE_URL}/search?s=${testvalue}`);
+  //     if (response.data.Response === True) {
+  //       console.log(response.status);
+  //       console.log(response.data);
+  //     } else {
+  //       console.log(response.status);
+  //       console.log(response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <form className="search-container" id="search" onSubmit={handleSubmit}>
@@ -149,7 +149,7 @@ export default function Search({ onSearchSuccess }) {
         </div>
         <input
           type="search"
-          placeholder="What movie title are you looking for?"
+          placeholder="What movie are you looking for?"
           name="title"
           value={formData.title}
           onChange={handleChange}

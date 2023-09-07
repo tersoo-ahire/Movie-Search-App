@@ -241,24 +241,6 @@ footer {
       }
     }
 
-    .bottom-input-container {
-      display: flex;
-      width: 80%;
-      align-items: center;
-      justify-content: center;
-      gap: 2em;
-
-      select {
-        background: #ffffff;
-        outline: none;
-        border: none;
-        border-radius: 0.5em;
-        padding: 1em;
-        font-size: 1.15rem;
-        color: $darkgrey;
-      }
-    }
-
     &:focus-within {
       box-shadow: 0 0 8px 1px $gold;
     }
@@ -432,6 +414,11 @@ footer {
 
               /* Add custom styles for the scrollbar */
               &::-webkit-scrollbar {
+                display: none;
+              }
+
+              &:hover::-webkit-scrollbar {
+                display: block;
                 width: 6px; /* Width of the scrollbar */
               }
 
@@ -440,12 +427,12 @@ footer {
                 border-radius: 1em;
               }
 
-              &::-webkit-scrollbar-thumb {
+              &:hover::-webkit-scrollbar-thumb {
                 background: #555555c6; /* Color of the scrollbar thumb (the draggable part) */
                 border-radius: 1em;
               }
 
-              &::-webkit-scrollbar-thumb:hover {
+              &:hover::-webkit-scrollbar-thumb:hover {
                 background: #ababab; /* Color of the scrollbar thumb on hover */
               }
             }
