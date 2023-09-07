@@ -4,9 +4,16 @@ import logo2 from "../assets/logo2.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
+
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  const toggleMobileNav = () => {
+    setIsMobileNavOpen(!isMobileNavOpen);
+  };
 
   useEffect(() => {
     // Function to handle scroll event
@@ -36,7 +43,7 @@ export default function Navigation() {
           <img src={logo2} alt="Navigation Logo" />
         </Link>
       </div>
-      <div className="right-nav">
+      <div className={`right-nav ${isMobileNavOpen ? "open" : ""}`}>
         <Link to={"/"}>Home</Link>
         <Link to={"#"}>About</Link>
         <Link to={"#"}>Company</Link>
@@ -59,6 +66,25 @@ export default function Navigation() {
             style={{ color: "#ffde00" }}
           />
         </a>
+      </div>
+      <div className="mobile-nav-toggle" onClick={toggleMobileNav}>
+        {isMobileNavOpen ? (
+          <FontAwesomeIcon
+            icon={faXmark}
+            size="2xl"
+            style={{
+              color: "white",
+            }}
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon={faBars}
+            size="2xl"
+            style={{
+              color: "white",
+            }}
+          />
+        )}
       </div>
     </nav>
   );

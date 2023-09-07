@@ -78,6 +78,9 @@ nav .right-nav a .github:hover {
   box-shadow: 0 0 8px 1px gold;
   text-shadow: 0 0 8px gold;
 }
+nav .mobile-nav-toggle {
+  display: none;
+}
 
 footer {
   display: flex;
