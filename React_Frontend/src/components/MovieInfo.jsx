@@ -14,7 +14,7 @@ export default function MovieInfo() {
   const [loading, setLoading] = useState(false);
   const [selectedMovieTitle, setSelectedMovieTitle] = useState(""); // New state for selected movie title
   const selectedMovieRef = useRef();
-  const apiKey = "fde9193e";
+  // const apiKey = "fde9193e";
   const buttonRef = useRef();
 
   const { movieData2 } = useMovieData2(); //Access movieData2 state from context
@@ -92,11 +92,11 @@ export default function MovieInfo() {
 
     // HANDLE API REQUESTS FOR SUBMITTING TITLE
     try {
-      const encodedTitle = encodeURIComponent(selectedMovieTitle);
-      const response = await axios.get(
-        `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
-      ); // OLD CODE
-      // const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
+      // const encodedTitle = encodeURIComponent(selectedMovieTitle);
+      // const response = await axios.get(
+      //   `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
+      // ); // OLD CODE
+      const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
       if (response.data.Response === "True") {
         setMovieData2(response.data); // Set the second movie data to be displayed.
         console.log(response.data);

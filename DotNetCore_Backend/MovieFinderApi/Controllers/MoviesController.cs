@@ -8,7 +8,7 @@ namespace MovieFinderApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowLocalhost5173")] // Apply the CORS policy here
+    [EnableCors] // Apply the CORS policy here
     public class MoviesController : ControllerBase
     {
         private readonly ILogger<MoviesController> _logger;

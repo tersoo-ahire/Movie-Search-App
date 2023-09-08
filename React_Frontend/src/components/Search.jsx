@@ -45,7 +45,7 @@ export default function Search({ onSearchSuccess }) {
     }));
   };
 
-  const apiKey = "fde9193e";
+  // const apiKey = "fde9193e";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,16 +60,16 @@ export default function Search({ onSearchSuccess }) {
 
     // INSERT CODE FOR HANDLING API REQUEST HERE
     try {
-      const encodedTitle = encodeURIComponent(formData.title);
-      const response = await axios.get(
-        `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
-        {
-          response: formData.response,
-        }
-      ); // OLD CODE
+      // const encodedTitle = encodeURIComponent(formData.title);
       // const response = await axios.get(
-      //   `${BASE_URL}/search?s=${formData.title}`
-      // ); // NEW CODE
+      //   `https://www.omdbapi.com/?apikey=${apiKey}&s=${encodedTitle}`,
+      //   {
+      //     response: formData.response,
+      //   }
+      // ); // OLD CODE
+      const response = await axios.get(
+        `${BASE_URL}/search?s=${formData.title}`
+      ); // NEW CODE
       if (response.data.Response === "True") {
         setMovieData(response.data); // Set the movie data to be displayed.
         let countdown = 1; // Set 1 second countdown on error message
