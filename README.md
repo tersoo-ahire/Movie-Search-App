@@ -2,6 +2,8 @@
 
 Movie Finder is a web application built using dotnet core and react to allow users to search movies via ombdp API's and return their search results. Users can view detailed information about the movie when they click on any result.
 
+Live Application: [https://tersoomoviefinderproject.netlify.app/](url)
+
 To launch the platform locally you will do the following;
 
 1. Clone the repo in your VS Code terminal using the following command `git clone https://github.com/tersoo-ahire/Movie-Search-App.git`
