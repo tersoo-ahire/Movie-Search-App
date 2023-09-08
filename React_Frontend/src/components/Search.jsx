@@ -70,14 +70,16 @@ export default function Search({ onSearchSuccess }) {
       const response = await axios.get(
         `${BASE_URL}/search?s=${formData.title}`
       ); // NEW CODE
-      if (response.data.Response === "True") {
+      if (response.data.response === "True") {
         setMovieData(response.data); // Set the movie data to be displayed.
-        let countdown = 1; // Set 1 second countdown on error message
+        let countdown = 1; // Set 1 second countdown to display search results
         const countdownInterval = setInterval(() => {
           countdown--;
           if (countdown === 0) {
             clearInterval(countdownInterval);
             onSearchSuccess(); // Call the onSearchSuccess callback;
+          } else {
+            console.log("An error occured. Probably naming convention");
           }
         }, 1000);
       } else {
@@ -87,11 +89,11 @@ export default function Search({ onSearchSuccess }) {
           countdown--;
           setErrorMessage("No movies were found");
           openShowError();
-          console.log("Message:", response.data);
 
           if (countdown === 0) {
             clearInterval(countdownInterval);
             closeShowError();
+            console.log("Message:", response.data);
           }
         }, 1000);
       }
@@ -118,23 +120,6 @@ export default function Search({ onSearchSuccess }) {
     setFormData({ title: "" });
     setLoading(false);
   };
-
-  // const test = async () => {
-  //   let testvalue = "Spiderman";
-
-  //   try {
-  //     const response = await axios.get(`${BASE_URL}/search?s=${testvalue}`);
-  //     if (response.data.Response === True) {
-  //       console.log(response.status);
-  //       console.log(response.data);
-  //     } else {
-  //       console.log(response.status);
-  //       console.log(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   return (
     <form className="search-container" id="search" onSubmit={handleSubmit}>
@@ -184,7 +169,6 @@ export default function Search({ onSearchSuccess }) {
           Submit
         </button>
       </div>
-      {/* <button onClick={test}>TEST BUTTON</button> */}
     </form>
   );
 }

@@ -42,7 +42,7 @@ export default function MovieInfo() {
     }
 
     setLoading(true);
-    setSelectedMovieTitle(movie.Title); // Update the selected movie title
+    setSelectedMovieTitle(movie.title); // Update the selected movie title
 
     let countdown = 3; // Set 3 seconds countdown for displaying information
     const countdownInterval = setInterval(() => {
@@ -97,10 +97,10 @@ export default function MovieInfo() {
       //   `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
       // ); // OLD CODE
       const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
-      if (response.data.Response === "True") {
+      if (response.data.response === "True") {
         setMovieData2(response.data); // Set the second movie data to be displayed.
         console.log(response.data);
-      } else if (response.data.Response === "False") {
+      } else if (response.data.response === "False") {
         setMovieData2(response.data);
         alert("An error occurred, please refresh and try again later!");
         closeMovieModal();
@@ -134,10 +134,10 @@ export default function MovieInfo() {
 
   return (
     <>
-      {movieData && movieData.Search && movieData.Search.length > 0 && (
+      {movieData && movieData.search && movieData.search.length > 0 && (
         <div className="movieinfo-container">
           <h2>Search Results</h2>
-          {movieData.Search.map((result, index) => (
+          {movieData.search.map((result, index) => (
             <div className="sub-container" key={index}>
               <form
                 className="movie-list"
@@ -145,15 +145,15 @@ export default function MovieInfo() {
                 onSubmit={handleSubmit}
               >
                 <span className="title" onClick={() => openMovieModal(result)}>
-                  {result.Title}
+                  {result.title}
                 </span>
                 <span onClick={() => openMovieModal(result)}>
                   Type:
-                  <span className="value"> {result.Type}</span>
+                  <span className="value"> {result.type}</span>
                 </span>
                 <span onClick={() => openMovieModal(result)}>
                   Year:
-                  <span className="value"> {result.Year}</span>
+                  <span className="value"> {result.year}</span>
                 </span>
                 <span onClick={() => openMovieModal(result)}>
                   IMBD Id:
@@ -181,15 +181,15 @@ export default function MovieInfo() {
                           size="2xl"
                         />
                       </div>
-                      <h3>{selectedMovie.Title}</h3>
+                      <h3>{selectedMovie.title}</h3>
                     </div>
                     <div className="information-sub-area">
                       <div className="image-container">
                         <img
                           src={
-                            selectedMovie.Poster === "N/A"
+                            selectedMovie.poster === "N/A"
                               ? genericbanner
-                              : selectedMovie.Poster
+                              : selectedMovie.poster
                           }
                           alt="Poster"
                         />
@@ -198,56 +198,56 @@ export default function MovieInfo() {
                         <div className="text-container">
                           <span>
                             Plot:
-                            <span className="value"> {movieData2.Plot}</span>
+                            <span className="value"> {movieData2.plot}</span>
                           </span>
                           <span>
                             Released:
                             <span className="value">
                               {" "}
-                              {movieData2.Released}
+                              {movieData2.released}
                             </span>
                           </span>
                           <span>
                             Genre:
-                            <span className="value"> {movieData2.Genre}</span>
+                            <span className="value"> {movieData2.genre}</span>
                           </span>
                           <span>
                             Type:
-                            <span className="value"> {selectedMovie.Type}</span>
+                            <span className="value"> {selectedMovie.type}</span>
                           </span>
                           <span>
                             Length:
-                            <span className="value"> {movieData2.Runtime}</span>
+                            <span className="value"> {movieData2.runtime}</span>
                           </span>
                           <span>
                             Director:
                             <span className="value">
                               {" "}
-                              {movieData2.Director}
+                              {movieData2.director}
                             </span>
                           </span>
                           <span>
                             Writer(s):
-                            <span className="value"> {movieData2.Writer}</span>
+                            <span className="value"> {movieData2.writer}</span>
                           </span>
                           <span>
                             Actors:
-                            <span className="value"> {movieData2.Actors}</span>
+                            <span className="value"> {movieData2.actors}</span>
                           </span>
                           <span>
                             Language:
                             <span className="value">
                               {" "}
-                              {movieData2.Language}
+                              {movieData2.language}
                             </span>
                           </span>
                           <span>
                             Country:
-                            <span className="value"> {movieData2.Country}</span>
+                            <span className="value"> {movieData2.country}</span>
                           </span>
                           <span>
                             Awards:
-                            <span className="value"> {movieData2.Awards}</span>
+                            <span className="value"> {movieData2.awards}</span>
                           </span>
                           <span>
                             IMDB Rating:
@@ -274,7 +274,7 @@ export default function MovieInfo() {
                             Box Office:
                             <span className="value">
                               {" "}
-                              {movieData2.BoxOffice}
+                              {movieData2.boxOffice}
                             </span>
                           </span>
                         </div>
@@ -300,7 +300,7 @@ export default function MovieInfo() {
               )}
             </div>
           ))}
-          <b className="results">Total Results: {movieData.Search.length}</b>
+          <b className="results">Total Results: {movieData.search.length}</b>
         </div>
       )}
     </>

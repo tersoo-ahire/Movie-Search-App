@@ -25,6 +25,7 @@ namespace MovieFinderApi.Models
         public string imdbID { get; set; } = "";
         public string Type { get; set; } = "";
         public string totalSeasons { get; set; } = "";
+        public string BoxOffice { get; set; } = "";
         public string Response { get; set; } = "";
     }
 
