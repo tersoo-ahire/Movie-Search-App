@@ -14,7 +14,7 @@ export default function MovieInfo() {
   const [loading, setLoading] = useState(false);
   const [selectedMovieTitle, setSelectedMovieTitle] = useState(""); // New state for selected movie title
   const selectedMovieRef = useRef();
-  // const apiKey = "fde9193e";
+  const apiKey = "fde9193e";
   const buttonRef = useRef();
 
   const { movieData2 } = useMovieData2(); //Access movieData2 state from context
@@ -42,7 +42,7 @@ export default function MovieInfo() {
     }
 
     setLoading(true);
-    setSelectedMovieTitle(movie.title); // Update the selected movie title
+    setSelectedMovieTitle(movie.Title); // Update the selected movie title
 
     let countdown = 3; // Set 3 seconds countdown for displaying information
     const countdownInterval = setInterval(() => {
@@ -92,15 +92,15 @@ export default function MovieInfo() {
 
     // HANDLE API REQUESTS FOR SUBMITTING TITLE
     try {
-      // const encodedTitle = encodeURIComponent(selectedMovieTitle);
-      // const response = await axios.get(
-      //   `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
-      // ); // OLD CODE
-      const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
-      if (response.data.response === "True") {
+      const encodedTitle = encodeURIComponent(selectedMovieTitle);
+      const response = await axios.get(
+        `https://www.omdbapi.com/?apikey=${apiKey}&t=${encodedTitle}`
+      ); // OLD CODE
+      // const response = await axios.get(`${BASE_URL}/movie-details?t=${selectedMovieTitle}`); //NEW CODE
+      if (response.data.Response === "True") {
         setMovieData2(response.data); // Set the second movie data to be displayed.
         console.log(response.data);
-      } else if (response.data.response === "False") {
+      } else if (response.data.Response === "False") {
         setMovieData2(response.data);
         alert("An error occurred, please refresh and try again later!");
         closeMovieModal();
@@ -134,10 +134,10 @@ export default function MovieInfo() {
 
   return (
     <>
-      {movieData && movieData.search && movieData.search.length > 0 && (
+      {movieData && movieData.Search && movieData.Search.length > 0 && (
         <div className="movieinfo-container">
           <h2>Search Results</h2>
-          {movieData.search.map((result, index) => (
+          {movieData.Search.map((result, index) => (
             <div className="sub-container" key={index}>
               <form
                 className="movie-list"
@@ -145,15 +145,15 @@ export default function MovieInfo() {
                 onSubmit={handleSubmit}
               >
                 <span className="title" onClick={() => openMovieModal(result)}>
-                  {result.title}
+                  {result.Title}
                 </span>
                 <span onClick={() => openMovieModal(result)}>
                   Type:
-                  <span className="value"> {result.type}</span>
+                  <span className="value"> {result.Type}</span>
                 </span>
                 <span onClick={() => openMovieModal(result)}>
                   Year:
-                  <span className="value"> {result.year}</span>
+                  <span className="value"> {result.Year}</span>
                 </span>
                 <span onClick={() => openMovieModal(result)}>
                   IMBD Id:
@@ -181,15 +181,15 @@ export default function MovieInfo() {
                           size="2xl"
                         />
                       </div>
-                      <h3>{selectedMovie.title}</h3>
+                      <h3>{selectedMovie.Title}</h3>
                     </div>
                     <div className="information-sub-area">
                       <div className="image-container">
                         <img
                           src={
-                            selectedMovie.poster === "N/A"
+                            selectedMovie.Poster === "N/A"
                               ? genericbanner
-                              : selectedMovie.poster
+                              : selectedMovie.Poster
                           }
                           alt="Poster"
                         />
@@ -198,56 +198,56 @@ export default function MovieInfo() {
                         <div className="text-container">
                           <span>
                             Plot:
-                            <span className="value"> {movieData2.plot}</span>
+                            <span className="value"> {movieData2.Plot}</span>
                           </span>
                           <span>
                             Released:
                             <span className="value">
                               {" "}
-                              {movieData2.released}
+                              {movieData2.Released}
                             </span>
                           </span>
                           <span>
                             Genre:
-                            <span className="value"> {movieData2.genre}</span>
+                            <span className="value"> {movieData2.Genre}</span>
                           </span>
                           <span>
                             Type:
-                            <span className="value"> {selectedMovie.type}</span>
+                            <span className="value"> {selectedMovie.Type}</span>
                           </span>
                           <span>
                             Length:
-                            <span className="value"> {movieData2.runtime}</span>
+                            <span className="value"> {movieData2.Runtime}</span>
                           </span>
                           <span>
                             Director:
                             <span className="value">
                               {" "}
-                              {movieData2.director}
+                              {movieData2.Director}
                             </span>
                           </span>
                           <span>
                             Writer(s):
-                            <span className="value"> {movieData2.writer}</span>
+                            <span className="value"> {movieData2.Writer}</span>
                           </span>
                           <span>
                             Actors:
-                            <span className="value"> {movieData2.actors}</span>
+                            <span className="value"> {movieData2.Actors}</span>
                           </span>
                           <span>
                             Language:
                             <span className="value">
                               {" "}
-                              {movieData2.language}
+                              {movieData2.Language}
                             </span>
                           </span>
                           <span>
                             Country:
-                            <span className="value"> {movieData2.country}</span>
+                            <span className="value"> {movieData2.Country}</span>
                           </span>
                           <span>
                             Awards:
-                            <span className="value"> {movieData2.awards}</span>
+                            <span className="value"> {movieData2.Awards}</span>
                           </span>
                           <span>
                             IMDB Rating:
@@ -274,7 +274,7 @@ export default function MovieInfo() {
                             Box Office:
                             <span className="value">
                               {" "}
-                              {movieData2.boxOffice}
+                              {movieData2.BoxOffice}
                             </span>
                           </span>
                         </div>
@@ -300,7 +300,7 @@ export default function MovieInfo() {
               )}
             </div>
           ))}
-          <b className="results">Total Results: {movieData.search.length}</b>
+          <b className="results">Total Results: {movieData.Search.length}</b>
         </div>
       )}
     </>
